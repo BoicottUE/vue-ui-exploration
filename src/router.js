@@ -1,30 +1,20 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from './views/Home.vue';
-import Test from './views/Test.vue';
-import About from './views/About.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
+import routes from 'vue-auto-routing'
+import { createRouterLayout } from 'vue-router-layout'
 
-Vue.use(Router);
+Vue.use(Router)
+
+const RouterLayout = createRouterLayout(layout => {
+  return import('@/layouts/' + layout + '.vue')
+})
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: About,
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: Test,
-    },
-  ],
-});
+      component: RouterLayout,
+      children: routes
+    }
+  ]
+})
