@@ -1,4 +1,4 @@
-# TestVueUI
+# Vue-UI-Exploration
 
 ## Project setup
 ```
